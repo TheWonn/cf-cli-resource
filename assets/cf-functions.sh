@@ -376,3 +376,9 @@ function cf_is_marketplace_service_available() {
   local plan=${2:?plan null or not set}
   cf marketplace | grep "$service_name" | grep "$plan" >/dev/null
 }
+
+function cf_map_route() {
+  local app_name=$1
+  local domain=$2
+  cf map-route ${app_name} ${domain} --hostname ${app_name}
+}
