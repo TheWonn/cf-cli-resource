@@ -504,7 +504,7 @@ Delete an app
 * `org`: *Optional.* The organization to target (required if not set in the source config)
 * `space`: *Optional.* The space to target (required if not set in the source config)
 * `app_name`: *Required.* The name of the application
-* `delete_mapped_routes`: *Optional.* Delete any mapped routes. Defaults to `false`.
+* `delete_mapped_routes`: *Optional.* Delete any mapped routes. Defaults to `false`
 
 ```yml
   - put: cf-delete
@@ -513,4 +513,24 @@ Delete an app
       command: delete
       app_name: myapp-ui
       delete_mapped_routes: true
+```
+
+#### map-route
+
+Map an additional route to an app
+
+* `org`: *Optional.* The organization to target (required if not set in the source config)
+* `space`: *Optional.* The space to target (required if not set in the source config)
+* `app_name`: *Required.* The name of the application
+* `domains`: *Required.* A list of domains to map to the app
+
+```yml
+  - put: cf-map-routes
+    resource: cf-env
+    params:
+      command: map-route
+      app_name: myapp-ui
+      domains:
+      - domain1.example.com
+      - domain2.example.com
 ```
